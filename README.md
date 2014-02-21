@@ -55,7 +55,7 @@ Some examples:
 
 ```
 
-Comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
+More comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
 
 ## Developer Information
 
