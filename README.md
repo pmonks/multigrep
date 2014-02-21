@@ -45,15 +45,15 @@ and the second being either a single file-like thing (...-file) or a sequence of
 construct a reader from.
 
 Regexes are applied on a line-by-line basis using [re-seq](http://clojuredocs.org/clojure_core/clojure.core/re-seq), and any lines
-that match are added to the result.  The result is a flat sequence of maps, each of which has the following keys:
+that contain one or more matches are added to the result.  The result is a flat sequence of maps, each of which has the following keys:
 
 ```clojure
 {
-  :file         ; the file that matched (only provided for the ...-files versions)
-  :line         ; text of the line that matched
-  :line-number  ; line-number of that line in the file
-  :regex        ; the regex that matched this line in the file (only provided for the multigrep-... versions)
-  :re-seq       ; the output from re-seq for this file, line and regex
+  :file         <file-like thing>                        ; the file that matched (only provided for the ...-files versions)
+  :line         <String>                                 ; text of the line that matched
+  :line-number  <Long>                                   ; line-number of that line in the file
+  :regex        <regex>                                  ; the regex that matched this line in the file (only provided for the multigrep-... versions)
+  :re-seq       <re-seq output (specific to the regex)>  ; the output from re-seq for this file, line and regex
 }
 ```
 
