@@ -9,7 +9,7 @@ A little Clojure library that provides various kinds of regex-based file greppin
 
 ## Installation
 
-`multigrep` is available as a Maven artifact from [Clojars](http://clojars.org/multigrep):
+`multigrep` is available as a Maven artifact from [Clojars](https://clojars.org/org.clojars.pmonks/multigrep):
 
 ```clojure
 [org.clojars.pmonks/multigrep "0.1.0"]
