@@ -44,6 +44,19 @@ and the second being either a single file-like thing (...-file) or a sequence of
 "File-like things" means anything that [clojure.java.io/reader](http://clojuredocs.org/clojure_core/clojure.java.io/reader) can
 construct a reader from.
 
+Regexes are applied on a line-by-line basis using [re-seq](http://clojuredocs.org/clojure_core/clojure.core/re-seq), and any lines
+that match are added to the result.  The result is a flat sequence of maps, each of which has the following keys:
+
+```clojure
+{
+  :file         ; the file that matched (only provided for the ...-files versions)
+  :line         ; text of the line that matched
+  :line-number  ; line-number of that line in the file
+  :regex        ; the regex that matched this line in the file (only provided for the multigrep-... versions)
+  :re-seq       ; the output from re-seq for this file, line and regex
+}
+```
+
 Some examples:
 
 ```clojure
@@ -52,7 +65,6 @@ Some examples:
 
 (mg/grep-file #"test" "test.txt")
 => ({:line "This is a test of the emergency broadcasting system.", :line-number 1, :re-seq ("test")})
-
 ```
 
 More comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
