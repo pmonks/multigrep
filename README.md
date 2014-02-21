@@ -60,11 +60,31 @@ that contain one or more matches are added to the result.  The result is a flat 
 Some examples:
 
 ```clojure
-(mg/grep-file #"foo" "test.txt")
-=> ()
-
-(mg/grep-file #"test" "test.txt")
-=> ({:line "This is a test of the emergency broadcasting system.", :line-number 1, :re-seq ("test")})
+user=> (require '[clojure.pprint :as pp])
+nil
+user=> (require '[multigrep.core :as mg])
+nil
+user=> (slurp "test.txt")
+"This is a test.\nThis is a test of the Outdoor Public Warning System.\nThis is only a test."
+user=> (mg/grep-file #"foo" "test.txt")
+()
+user=> (pp/pprint (mg/grep-file #"test" "test.txt"))
+({:line "This is a test.", :line-number 1, :re-seq ("test")}
+ {:line "This is a test of the Outdoor Public Warning System.",
+  :line-number 2,
+  :re-seq ("test")}
+ {:line "This is only a test.", :line-number 3, :re-seq ("test")})
+nil
+user=> (pp/pprint (mg/multigrep-file [#"\s([Ss][\w]*)" #"\s((?:(?:P)|(?:O))[\w]*)"] "test.txt"))
+({:line "This is a test of the Outdoor Public Warning System.",
+  :line-number 2,
+  :regex #"\s([Ss][\w]*)",
+  :re-seq ([" System" "System"])}
+ {:line "This is a test of the Outdoor Public Warning System.",
+  :line-number 2,
+  :regex #"\s((?:(?:P)|(?:O))[\w]*)",
+  :re-seq ([" Outdoor" "Outdoor"] [" Public" "Public"])})
+nil
 ```
 
 More comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
