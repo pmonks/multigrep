@@ -7,7 +7,7 @@
 ; Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 ;
 
-(defproject org.clojars.pmonks/multigrep "0.1.0-SNAPSHOT"
+(defproject org.clojars.pmonks/multigrep "0.1.0"
   :description        "A little library that provides various kinds of regex-based file grepping."
   :url                "https://github.com/pmonks/multigrep"
   :license {:name     "Creative Commons Attribution-ShareAlike 3.0 Unported License."

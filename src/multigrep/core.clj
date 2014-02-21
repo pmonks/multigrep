@@ -20,7 +20,7 @@
                                          :line-number (inc %1)
                                          :re-seq      matches
                                        }))
-                                   lines))))))
+                                  lines))))))
 
 (defn- grep-file-helper
   [regex file]
