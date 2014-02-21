@@ -60,6 +60,8 @@ Some examples:
 
 [Bug Tracker](https://github.com/pmonks/multigrep/issues)
 
+[![Build Status](https://travis-ci.org/pmonks/multigrep.png?branch=master)](https://travis-ci.org/pmonks/multigrep)
+
 ## License
 
 Copyright © 2014 Peter Monks (pmonks@gmail.com)
