@@ -9,7 +9,7 @@ A little Clojure library that provides various kinds of regex-based file greppin
 
 ## Installation
 
-`multigrep` may soon be available as a Maven artifact from [Clojars](http://clojars.org/multigrep):
+`multigrep` is available as a Maven artifact from [Clojars](http://clojars.org/multigrep):
 
 ```clojure
 [org.clojars.pmonks/multigrep "0.1.0"]
@@ -54,6 +54,8 @@ Some examples:
 => ({:line "This is a test of the emergency broadcasting system.", :line-number 1, :re-seq ("test")})
 
 ```
+
+Comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
 
 ## Developer Information
 
