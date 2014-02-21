@@ -41,7 +41,8 @@ The library provides the following functions:
 
 All of which take two parameters - the first being either a single regex (grep-...) or a sequence of regexes (multigrep-...),
 and the second being either a single file-like thing (...-file) or a sequence of file-like things (...-files).
-"File-like things" means anything that can be passed to clojure.java.io/reader.
+"File-like things" means anything that [clojure.java.io/reader](http://clojuredocs.org/clojure_core/clojure.java.io/reader) can
+construct a reader from.
 
 Some examples:
 
@@ -66,4 +67,4 @@ Some examples:
 
 Copyright © 2014 Peter Monks (pmonks@gmail.com)
 
-Distributed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) either version 1.0 or (at your option) any later version.

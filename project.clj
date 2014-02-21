@@ -1,11 +1,13 @@
 ;
 ; Copyright © 2014 Peter Monks (pmonks@gmail.com)
 ;
-; This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
-; Unported License. To view a copy of this license, visit
-; http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative
-; Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+; All rights reserved. This program and the accompanying materials
+; are made available under the terms of the Eclipse Public License v1.0
+; which accompanies this distribution, and is available at
+; http://www.eclipse.org/legal/epl-v10.html
 ;
+; Contributors:
+;    Peter Monks - initial implementation
 
 (defproject org.clojars.pmonks/multigrep "0.1.0"
   :description        "A little library that provides various kinds of regex-based file grepping."
