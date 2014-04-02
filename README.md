@@ -11,9 +11,7 @@ A little Clojure library that provides various kinds of regex-based file greppin
 
 `multigrep` is available as a Maven artifact from [Clojars](https://clojars.org/org.clojars.pmonks/multigrep):
 
-```clojure
-[org.clojars.pmonks/multigrep "0.1.0"]
-```
+[![version](https://clojars.org/org.clojars.pmonks/multigrep/latest-version.svg)](https://clojars.org/org.clojars.pmonks/multigrep)
 
 ## Usage
 
