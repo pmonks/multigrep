@@ -95,6 +95,8 @@ More comprehensive examples can be seen in the [unit tests](https://github.com/p
 
 [![Build Status](https://travis-ci.org/pmonks/multigrep.png?branch=master)](https://travis-ci.org/pmonks/multigrep)
 
+[![endorse](https://api.coderwall.com/pmonks/endorsecount.png)](https://coderwall.com/pmonks)
+
 ## License
 
 Copyright © 2014 Peter Monks (pmonks@gmail.com)
