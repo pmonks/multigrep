@@ -44,11 +44,11 @@ multigrep.core/grep
 
   Each map in the sequence has these keys:
   {
+    :file         ; the file-like thing that matched
     :line         ; text of the line that matched
     :line-number  ; line-number of that line
-    :re-seq       ; the output from re-seq for this line and this regex
-    :file         ; the file-like thing that matched
     :regex        ; the regex that matched this line
+    :re-seq       ; the output from re-seq for this line and this regex
   }
 nil
 ```
