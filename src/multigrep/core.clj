@@ -34,7 +34,7 @@
   {
     :file         ; the file-like thing that matched
     :line         ; text of the line that matched
-    :line-number  ; line-number of that line
+    :line-number  ; line-number of that line (note: 1 based)
     :regex        ; the regex that matched this line
     :re-seq       ; the output from re-seq for this line and this regex
   }"
