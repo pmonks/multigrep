@@ -46,7 +46,7 @@
 
 (defmethod grep [false true]
   [regex files]
-  (flatten (map #(grep [regex] %) files)))
+  (flatten (map (partial grep [regex]) files)))
 
 (defmethod grep [true false]
   [regexes file]
@@ -56,5 +56,5 @@
 
 (defmethod grep [true true]
   [regexes files]
-  (flatten (map #(grep regexes %) files)))
+  (flatten (map (partial grep regexes) files)))
 

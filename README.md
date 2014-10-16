@@ -99,6 +99,9 @@ nil
 
 More comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
 
+## Contributors
+[Erik Assum](https://github.com/slipset) - [edumucated me in the use of ```partial```.](https://twitter.com/slipset/status/522620387709169664)
+
 ## Developer Information
 
 [GitHub project](https://github.com/pmonks/multigrep)
