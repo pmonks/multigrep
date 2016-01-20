@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pmonks/multigrep.svg?branch=master)](https://travis-ci.org/pmonks/multigrep)
+
 # multigrep
 
 A little Clojure library that provides regex-based file grepping.
