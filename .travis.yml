@@ -3,4 +3,5 @@ lein: lein2
 script: lein2 midje
 jdk:
   - openjdk7
-  - openjdk6
+  - oraclejdk8
+sudo: false
