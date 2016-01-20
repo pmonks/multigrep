@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/pmonks/multigrep.svg?branch=master)](https://travis-ci.org/pmonks/multigrep)
+[![Dependencies Status](http://jarkeeper.com/pmonks/multigrep/status.svg)](http://jarkeeper.com/pmonks/multigrep)
 
 # multigrep
 
@@ -110,12 +111,10 @@ More comprehensive examples can be seen in the [unit tests](https://github.com/p
 
 [Bug Tracker](https://github.com/pmonks/multigrep/issues)
 
-[![Build Status](https://travis-ci.org/pmonks/multigrep.png?branch=master)](https://travis-ci.org/pmonks/multigrep)
-
 [![endorse](https://api.coderwall.com/pmonks/endorsecount.png)](https://coderwall.com/pmonks)
 
 ## License
 
-Copyright © 2014 Peter Monks (pmonks@gmail.com)
+Copyright © 2014-2016 Peter Monks (pmonks@gmail.com)
 
 Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) either version 1.0 or (at your option) any later version.
