@@ -10,7 +10,8 @@
 ;    Peter Monks - initial implementation
 
 (ns multigrep.core
-  (:require [clojure.java.io :as io]))
+  (:require [clojure.java.io :as io]
+            [clojure.string  :as s]))
 
 (defn- grep-line
   "Greps a single line with multiple regexes, returning a sequence of matches."
@@ -58,3 +59,53 @@
   [regexes files]
   (flatten (map (partial grep regexes) files)))
 
+
+(defmulti greprep
+  "[s r f]
+  Searches for s (a single regex) in f (one or more things that can be read by clojure.io/reader), replacing with r (a string).
+
+  Returns a sequence of maps representing each of the replacements.  Each map in the sequenced has these keys:
+  {
+    :file         ; the file-like thing that matched
+    :line-number  ; line-number of that line (note: 1 based)
+  }"
+  (fn [s r f] (sequential? f)))
+
+(def ^:private in-memory-threshold (* 1024 1024))  ; 1MB
+
+(defn- replace-and-write-line
+  [^java.io.Writer out regex replacement line file line-number]
+  (let [replaced-line (s/replace line regex replacement)]
+    (.write out (str replaced-line "\n"))
+    (when-not (= line replaced-line)
+      {
+        :file        file
+        :line-number line-number
+      })))
+
+(defn- replace-and-write-file
+  [regex replacement lines file]
+  (with-open [out (io/writer file :append false)]
+    (doall (remove nil?
+                   (flatten (map-indexed #(replace-and-write-line out regex replacement %2 file (inc %1))
+                                         lines))))))
+
+(defn- in-memory-greprep
+  [regex replacement file]
+  (let [lines (with-open [r (io/reader file)]
+                (doall (line-seq r)))]
+    (replace-and-write-file regex replacement lines file)))
+
+(defn- on-disk-greprep
+  [regex replacement file]
+  (throw (UnsupportedOperationException. "Not yet implemented.")))
+
+(defmethod greprep false
+  [regex replacement file]
+  (if (< (.length (io/file file)) in-memory-threshold)
+    (in-memory-greprep regex replacement file)
+    (on-disk-greprep   regex replacement file)))
+
+(defmethod greprep true
+  [regex replacement files]
+  (flatten (map (partial greprep regex replacement) files)))
