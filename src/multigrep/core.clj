@@ -60,7 +60,7 @@
   (flatten (map (partial grep regexes) files)))
 
 
-(defmulti greprep
+(defmulti greplace
   "[s r f]
   Searches for s (a single regex) in f (one or more things that can be read by clojure.io/reader), replacing with r (a string).
 
@@ -73,7 +73,7 @@
 
 (def ^:private in-memory-threshold (* 1024 1024))  ; 1MB
 
-(defn- replace-and-write-line
+(defn- greplace-and-write-line
   [^java.io.Writer out regex replacement line file line-number]
   (let [replaced-line (s/replace line regex replacement)]
     (.write out (str replaced-line "\n"))
@@ -83,29 +83,29 @@
         :line-number line-number
       })))
 
-(defn- replace-and-write-file
+(defn- in-memory-greplace-and-write-file
   [regex replacement lines file]
   (with-open [out (io/writer file :append false)]
     (doall (remove nil?
-                   (flatten (map-indexed #(replace-and-write-line out regex replacement %2 file (inc %1))
+                   (flatten (map-indexed #(greplace-and-write-line out regex replacement %2 file (inc %1))
                                          lines))))))
 
-(defn- in-memory-greprep
+(defn- in-memory-greplace
   [regex replacement file]
   (let [lines (with-open [r (io/reader file)]
                 (doall (line-seq r)))]
-    (replace-and-write-file regex replacement lines file)))
+    (in-memory-greplace-and-write-file regex replacement lines file)))
 
-(defn- on-disk-greprep
+(defn- on-disk-greplace
   [regex replacement file]
   (throw (UnsupportedOperationException. "Not yet implemented.")))
 
-(defmethod greprep false
+(defmethod greplace false
   [regex replacement file]
   (if (< (.length (io/file file)) in-memory-threshold)
-    (in-memory-greprep regex replacement file)
-    (on-disk-greprep   regex replacement file)))
+    (in-memory-greplace regex replacement file)
+    (on-disk-greplace   regex replacement file)))
 
-(defmethod greprep true
+(defmethod greplace true
   [regex replacement files]
-  (flatten (map (partial greprep regex replacement) files)))
+  (flatten (map (partial greplace regex replacement) files)))
