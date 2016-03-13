@@ -61,21 +61,23 @@
 
 
 (defmulti greplace
-  "[s r f]
-  Searches for s (a single regex) in f (one or more things that can be read by clojure.io/reader), replacing with r (a string).
+  "[r s f]
+  Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), swapping it with s (a string).
 
   Returns a sequence of maps representing each of the replacements.  Each map in the sequenced has these keys:
   {
     :file         ; the file-like thing that matched
-    :line-number  ; line-number of that line (note: 1 based)
+    :line-number  ; line-number of the line that had one or more matches (note: 1 based)
   }"
-  (fn [s r f] (sequential? f)))
+  (fn [r s f] (sequential? f)))
 
-(def ^:private in-memory-threshold (* 1024 1024))  ; 1MB
+; Threshold below which replacements will be done in-memory - default is 1MB
+;(def ^:private in-memory-threshold (* 1024 1024))
+(def ^:private in-memory-threshold 1024)   ;####TEST WITH SMALL FILES!!!!
 
 (defn- greplace-and-write-line
-  [^java.io.Writer out regex replacement line file line-number]
-  (let [replaced-line (s/replace line regex replacement)]
+  [^java.io.Writer out regex swap line file line-number]
+  (let [replaced-line (s/replace line regex swap)]
     (.write out (str replaced-line "\n"))
     (when-not (= line replaced-line)
       {
@@ -84,28 +86,44 @@
       })))
 
 (defn- in-memory-greplace-and-write-file
-  [regex replacement lines file]
+  [regex swap lines file]
   (with-open [out (io/writer file :append false)]
     (doall (remove nil?
-                   (flatten (map-indexed #(greplace-and-write-line out regex replacement %2 file (inc %1))
+                   (flatten (map-indexed #(greplace-and-write-line out regex swap %2 file (inc %1))
                                          lines))))))
 
 (defn- in-memory-greplace
-  [regex replacement file]
+  "Performs a greplace in memory."
+  [regex swap file]
   (let [lines (with-open [r (io/reader file)]
                 (doall (line-seq r)))]
-    (in-memory-greplace-and-write-file regex replacement lines file)))
+    (in-memory-greplace-and-write-file regex swap lines file)))
 
 (defn- on-disk-greplace
-  [regex replacement file]
-  (throw (UnsupportedOperationException. "Not yet implemented.")))
+  "Performs a greplace on disk, a line at a time."
+  [regex swap file]
+  (let [result    (atom '())
+        temp-file (java.io.File/createTempFile "greplace_" ".tmp")]
+    (try
+      (with-open [temp-w (io/writer temp-file)]
+        (io/copy file temp-file))
+      (with-open [temp-r (io/reader temp-file)]
+        (with-open [out (io/writer file :append false)]
+          (reset! result
+                  (doall
+                    (remove nil?
+                            (flatten (map-indexed #(greplace-and-write-line out regex swap %2 file (inc %1))
+                                     (line-seq temp-r))))))))
+      (finally 
+        (io/delete-file temp-file)))
+    @result))
 
 (defmethod greplace false
-  [regex replacement file]
+  [regex swap file]
   (if (< (.length (io/file file)) in-memory-threshold)
-    (in-memory-greplace regex replacement file)
-    (on-disk-greplace   regex replacement file)))
+    (in-memory-greplace regex swap file)
+    (on-disk-greplace   regex swap file)))
 
 (defmethod greplace true
-  [regex replacement files]
-  (flatten (map (partial greplace regex replacement) files)))
+  [regex swap files]
+  (flatten (map (partial greplace regex swap) files)))
