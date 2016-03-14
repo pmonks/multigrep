@@ -62,12 +62,12 @@
 
 (defmulti greplace
   "[r s f]
-  Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), swapping it with s (a string).
+  Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), substituting s (a string).
 
-  Returns a sequence of maps representing each of the replacements.  Each map in the sequenced has these keys:
+  Returns a sequence of maps representing each of the substitutions.  Each map in the sequenced has these keys:
   {
     :file         ; the file-like thing that matched
-    :line-number  ; line-number of the line that had one or more matches (note: 1 based)
+    :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)
   }"
   (fn [r s f] (sequential? f)))
 

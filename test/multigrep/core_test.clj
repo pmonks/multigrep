@@ -88,14 +88,21 @@
              ["The Man and His Two Wives.txt" 17 "ie"])))
 
 (facts "greplace"
-  (let [test-file (io/file "deleteme.txt")]
+  (let [test-file (io/file "greplace-test-output.txt")]
     (try
       (io/copy (io/file aesop1) test-file)
 
-      (fact "non-regex grep, one file, no matches"
+      (fact "non-regex grep, one file, no substitutions"
+        (map :line-number (greplace #"PANTS" "pants" test-file))
+        => '())
+      (fact "non-regex grep, one file, one substitution"
         (map :line-number (greplace #"THE ANTS" "The Ants" test-file))
         => '(4))
+      (fact "regex grep, one file, one substitution"
+        (map :line-number (greplace #"(?i)ants" "ANTS" test-file))
+        => '(1 4 6 14))
 
-      (finally
-        (io/delete-file test-file true)))))
+;      (finally
+;        (io/delete-file test-file true))
+      )))
 
