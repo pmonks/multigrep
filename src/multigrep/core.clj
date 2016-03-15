@@ -60,8 +60,8 @@
   (flatten (map (partial grep regexes) files)))
 
 
-(defmulti greplace
-  "[r s f]
+(defmulti greplace!
+  "[r s f (in-memory-threshold?)]
   Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), substituting s
   (a string, or a function of one parameter (the match(es) from the regex) returning a string).
 
@@ -69,12 +69,15 @@
   {
     :file         ; the file-like thing that matched
     :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)
-  }"
-  (fn [r s f] (sequential? f)))
+  }
 
-; Threshold below which replacements will be done in-memory - default is 1MB
-;(def ^:private in-memory-threshold (* 1024 1024))
-(def ^:private in-memory-threshold 1024)   ;####TEST WITH SMALL FILES!!!!
+  The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.
+  It defaults to 1MB."
+  (fn
+    ([r s f]           :add-default-threshold)
+    ([r s f threshold] (sequential? f))))
+
+(def ^:private default-in-memory-greplace-threshold (* 1024 1024))  ; 1MB
 
 (defn- greplace-and-write-line
   [^java.io.Writer out regex substitution line file line-number]
@@ -86,7 +89,7 @@
         :line-number line-number
       })))
 
-(defn- in-memory-greplace-and-write-file
+(defn- greplace-and-write-file
   [regex substitution lines file]
   (with-open [out (io/writer file :append false)]
     (doall (remove nil?
@@ -98,7 +101,7 @@
   [regex substitution file]
   (let [lines (with-open [r (io/reader file)]
                 (doall (line-seq r)))]
-    (in-memory-greplace-and-write-file regex substitution lines file)))
+    (greplace-and-write-file regex substitution lines file)))
 
 (defn- on-disk-greplace
   "Performs a greplace on disk, a line at a time."
@@ -109,22 +112,21 @@
       (with-open [temp-w (io/writer temp-file)]
         (io/copy file temp-file))
       (with-open [temp-r (io/reader temp-file)]
-        (with-open [out (io/writer file :append false)]
-          (reset! result
-                  (doall
-                    (remove nil?
-                            (flatten (map-indexed #(greplace-and-write-line out regex substitution %2 file (inc %1))
-                                     (line-seq temp-r))))))))
+        (reset! result (greplace-and-write-file regex substitution (line-seq temp-r) file)))
       (finally
         (io/delete-file temp-file)))
     @result))
 
-(defmethod greplace false
+(defmethod greplace! :add-default-threshold
   [regex substitution file]
+  (greplace regex substitution file default-in-memory-greplace-threshold))
+
+(defmethod greplace! false
+  [regex substitution file in-memory-threshold]
   (if (< (.length (io/file file)) in-memory-threshold)
     (in-memory-greplace regex substitution file)
     (on-disk-greplace   regex substitution file)))
 
-(defmethod greplace true
-  [regex substitution files]
-  (flatten (map (partial greplace regex substitution) files)))
+(defmethod greplace! true
+  [regex substitution files in-memory-threshold]
+  (flatten (map (partial greplace regex substitution in-memory-threshold) files)))

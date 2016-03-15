@@ -87,25 +87,42 @@
              ["The Hare and the Tortoise.txt" 6 "ie"]
              ["The Man and His Two Wives.txt" 17 "ie"])))
 
-(facts "greplace"
+(facts "greplace in-memory"
   (let [test-file (io/file "greplace-test-output.txt")]
-    (try
-      (io/copy (io/file aesop1) test-file)
+    (io/copy (io/file aesop1) test-file)
 
-      (fact "non-regex grep, string substitute, one file, no substitutions"
-        (map :line-number (greplace #"PANTS" "pants" test-file))
-        => '())
-      (fact "non-regex grep, string substitute, one file, one substitution"
-        (map :line-number (greplace #"THE ANTS" "The Ants" test-file))
-        => '(4))
-      (fact "regex grep, string substitute, one file, one substitution"
-        (map :line-number (greplace #"(?i)ants" "ANTS" test-file))
-        => '(1 4 6 14))
-      (fact "regex grep, function substitute, one file, one substitution"
-        (map :line-number (greplace #"(?i)grasshopper" (fn [m] (.toString (java.util.UUID/randomUUID))) test-file))
-        => '(1 5))
+    (fact "non-regex grep, string substitute, one file, no substitutions"
+      (map :line-number (greplace! #"PANTS" "pants" test-file))
+      => '())
+    (fact "non-regex grep, string substitute, one file, one substitution"
+      (map :line-number (greplace! #"THE ANTS" "The Ants" test-file))
+      => '(4))
+    (fact "regex grep, string substitute, one file, one substitution"
+      (map :line-number (greplace! #"(?i)ants" "ANTS" test-file))
+      => '(1 4 6 14))
+    (fact "regex grep, function substitute, one file, one substitution"
+      (map :line-number (greplace! #"(?i)grasshopper" (fn [m] (.toString (java.util.UUID/randomUUID))) test-file))
+      => '(1 5))
 
-;      (finally
-;        (io/delete-file test-file true))
-      )))
+    ))
+
+(facts "greplace on-disk"
+  (let [in-memory-threshold 0   ; Force on-disk greplace
+        test-file           (io/file "greplace-test-output.txt")]
+    (io/copy (io/file aesop1) test-file)
+
+    (fact "in-memory, non-regex grep, string substitute, one file, no substitutions"
+      (map :line-number (greplace! #"PANTS" "pants" test-file in-memory-threshold))
+      => '())
+    (fact "in-memory, non-regex grep, string substitute, one file, one substitution"
+      (map :line-number (greplace! #"THE ANTS" "The Ants" test-file in-memory-threshold))
+      => '(4))
+    (fact "in-memory, regex grep, string substitute, one file, one substitution"
+      (map :line-number (greplace! #"(?i)ants" "ANTS" test-file in-memory-threshold))
+      => '(1 4 6 14))
+    (fact "in-memory, regex grep, function substitute, one file, one substitution"
+      (map :line-number (greplace! #"(?i)grasshopper" (fn [m] (.toString (java.util.UUID/randomUUID))) test-file in-memory-threshold))
+      => '(1 5))
+
+    ))
 
