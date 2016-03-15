@@ -92,15 +92,18 @@
     (try
       (io/copy (io/file aesop1) test-file)
 
-      (fact "non-regex grep, one file, no substitutions"
+      (fact "non-regex grep, string substitute, one file, no substitutions"
         (map :line-number (greplace #"PANTS" "pants" test-file))
         => '())
-      (fact "non-regex grep, one file, one substitution"
+      (fact "non-regex grep, string substitute, one file, one substitution"
         (map :line-number (greplace #"THE ANTS" "The Ants" test-file))
         => '(4))
-      (fact "regex grep, one file, one substitution"
+      (fact "regex grep, string substitute, one file, one substitution"
         (map :line-number (greplace #"(?i)ants" "ANTS" test-file))
         => '(1 4 6 14))
+      (fact "regex grep, function substitute, one file, one substitution"
+        (map :line-number (greplace #"(?i)grasshopper" (fn [m] (.toString (java.util.UUID/randomUUID))) test-file))
+        => '(1 5))
 
 ;      (finally
 ;        (io/delete-file test-file true))
