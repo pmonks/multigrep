@@ -119,7 +119,7 @@
 
 (defmethod greplace! :add-default-threshold
   [regex substitution file]
-  (greplace regex substitution file default-in-memory-greplace-threshold))
+  (greplace! regex substitution file default-in-memory-greplace-threshold))
 
 (defmethod greplace! false
   [regex substitution file in-memory-threshold]
@@ -129,4 +129,4 @@
 
 (defmethod greplace! true
   [regex substitution files in-memory-threshold]
-  (flatten (map (partial greplace regex substitution in-memory-threshold) files)))
+  (flatten (map (partial greplace! regex substitution in-memory-threshold) files)))
