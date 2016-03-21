@@ -33,10 +33,10 @@
 
   Each map in the sequence has these keys:
   {
-    :file         ; the file-like thing that matched
+    :file         ; the entry in f that matched
     :line         ; text of the line that matched
     :line-number  ; line-number of that line (note: 1 based)
-    :regex        ; the regex that matched this line
+    :regex        ; the entry in r that matched
     :re-seq       ; the output from re-seq for this line and this regex
   }"
   (fn [r f] [(sequential? r) (sequential? f)]))
@@ -65,7 +65,7 @@
   Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), substituting s
   (a string, or a function of one parameter (the match(es) from the regex) returning a string).
 
-  Returns a sequence of maps representing each of the substitutions.  Each map in the sequenced has these keys:
+  Returns a sequence of maps representing each of the substitutions.  Each map in the sequence has these keys:
   {
     :file         ; the file-like thing that matched
     :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)

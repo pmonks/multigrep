@@ -3,7 +3,7 @@
 
 # multigrep
 
-A little Clojure library that provides regex-based file grepping.
+A little Clojure library that provides regex-based file grepping and substitution.
 
 ## Installation
 
@@ -35,7 +35,11 @@ Require it in your application:
   (:require [multigrep.core :as mg]))
 ```
 
-The library provides a single multimethod with two arguments:
+The library provides two functions - `grep` and (since v0.3.0) `greplace!`:
+
+### grep
+
+The first function, for grepping files, has two arguments:
 
 ```
 user=> (doc multigrep.core/grep)
@@ -47,18 +51,42 @@ multigrep.core/grep
 
   Each map in the sequence has these keys:
   {
-    :file         ; the file-like thing that matched
+    :file         ; the entry in f that matched
     :line         ; text of the line that matched
     :line-number  ; line-number of that line (note: 1 based)
-    :regex        ; the regex that matched this line
+    :regex        ; the entry in r that matched
     :re-seq       ; the output from re-seq for this line and this regex
   }
 nil
 ```
 
-Regexes are applied on a line-by-line basis using [re-seq](http://clojuredocs.org/clojure_core/clojure.core/re-seq).
+Regexes are applied on a line-by-line basis using [re-seq](http://clojuredocs.org/clojure.core/re-seq).
 
-Some examples:
+### greplace!
+
+The second function, for substituting text in files, has 3 or 4 arguments (the last argument is optional):
+```
+user=> (doc multigrep.core/greplace!)
+-------------------------
+multigrep.core/greplace!
+  [r s f (in-memory-threshold?)]
+  Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), substituting s
+  (a string, or a function of one parameter (the match(es) from the regex) returning a string).
+
+  Returns a sequence of maps representing each of the substitutions.  Each map in the sequence has these keys:
+  {
+    :file         ; the file-like thing that matched
+    :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)
+  }
+
+  The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.
+  It defaults to 1MB.
+```
+
+Substitutions are performed on a line-by-line basis using [clojure.string/replace](http://clojuredocs.org/clojure.string/replace).
+
+
+## Examples
 
 ```
 user=> (require '[clojure.pprint :as pp])
