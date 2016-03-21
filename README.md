@@ -3,7 +3,7 @@
 
 # multigrep
 
-A little Clojure library that provides regex-based file grepping and substitution.
+A little Clojure library that provides regex-based file grepping and/or text substitution.
 
 ## Installation
 
@@ -46,8 +46,7 @@ user=> (doc multigrep.core/grep)
 -------------------------
 multigrep.core/grep
   [r f]
-  Returns a sequence of maps representing each of the matches of r (one or more regexes)
-  in f (one or more things that can be read by clojure.io/reader).
+  Returns a sequence of maps representing each of the matches of r (one or more regexes) in f (one or more things that can be read by clojure.io/reader).
 
   Each map in the sequence has these keys:
   {
@@ -65,26 +64,25 @@ Regexes are applied on a line-by-line basis using [re-seq](http://clojuredocs.or
 ### greplace!
 
 The second function, for substituting text in files, has 3 or 4 arguments (the last argument is optional):
+
 ```
 user=> (doc multigrep.core/greplace!)
 -------------------------
 multigrep.core/greplace!
   [r s f (in-memory-threshold?)]
-  Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), substituting s
-  (a string, or a function of one parameter (the match(es) from the regex) returning a string).
+  Applies r (a single regex) to f (one or more things that can be read by clojure.io/reader), substituting s (a string, or a function of one parameter (the match(es) from the regex) returning a string).
 
   Returns a sequence of maps representing each of the substitutions.  Each map in the sequence has these keys:
   {
-    :file         ; the file-like thing that matched
+    :file         ; the entry in f that matched
     :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)
   }
 
-  The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.
-  It defaults to 1MB.
+  The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.  It defaults to 1MB.
+nil
 ```
 
 Substitutions are performed on a line-by-line basis using [clojure.string/replace](http://clojuredocs.org/clojure.string/replace).
-
 
 ## Examples
 

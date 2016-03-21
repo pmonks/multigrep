@@ -62,17 +62,15 @@
 
 (defmulti greplace!
   "[r s f (in-memory-threshold?)]
-  Searches for r (a single regex) in f (one or more things that can be read by clojure.io/reader), substituting s
-  (a string, or a function of one parameter (the match(es) from the regex) returning a string).
+  Applies r (a single regex) to f (one or more things that can be read by clojure.io/reader), substituting s (a string, or a function of one parameter (the match(es) from the regex) returning a string).
 
   Returns a sequence of maps representing each of the substitutions.  Each map in the sequence has these keys:
   {
-    :file         ; the file-like thing that matched
+    :file         ; the entry in f that matched
     :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)
   }
 
-  The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.
-  It defaults to 1MB."
+  The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.  It defaults to 1MB."
   (fn
     ([r s f]           :add-default-threshold)
     ([r s f threshold] (sequential? f))))
