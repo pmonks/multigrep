@@ -87,14 +87,8 @@ Substitutions are performed on a line-by-line basis using [clojure.string/replac
 ## Examples
 
 ```
-user=> (require '[clojure.pprint :as pp])
-nil
-user=> (require '[multigrep.core :as mg])
-nil
 user=> (slurp "test.txt")
-"This is a test.\nThis is a test of the Outdoor Public Warning System.\nThis is only a test."
-user=> (mg/grep #"foo" "test.txt")
-()
+"This is a test.\nThis is a test of the Outdoor Public Warning System.\nThis is only a test.\n"
 user=> (pp/pprint (mg/grep #"test" "test.txt"))
 ({:file "test.txt",
   :line "This is a test.",
@@ -124,6 +118,19 @@ user=> (pp/pprint (mg/grep [#"\s([Ss][\w]*)" #"\s((?:(?:P)|(?:O))[\w]*)"] "test.
   :regex #"\s((?:(?:P)|(?:O))[\w]*)",
   :re-seq ([" Outdoor" "Outdoor"] [" Public" "Public"])})
 nil
+user=> (pp/pprint (mg/greplace! #"test" "TEST" "test.txt"))
+({:file "test.txt", :line-number 1}
+ {:file "test.txt", :line-number 2}
+ {:file "test.txt", :line-number 3})
+user=> (slurp "test.txt")
+"This is a TEST.\nThis is a TEST of the Outdoor Public Warning System.\nThis is only a TEST.\n"
+user=> (pp/pprint (mg/greplace! #"(?i)test" (fn [x] (str (java.util.UUID/randomUUID))) "test.txt"))
+({:file "test.txt", :line-number 1}
+ {:file "test.txt", :line-number 2}
+ {:file "test.txt", :line-number 3})
+nil
+user=> (slurp "test.txt")
+"This is a a559edce-d5b4-432d-8092-f587f867134f.\nThis is a e9d536a1-f2f6-4f99-beab-9f949733d094 of the Outdoor Public Warning System.\nThis is only a a914a7b1-baab-4422-a86c-f29370fbf7d5.\n"
 ```
 
 More comprehensive examples can be seen in the [unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj).
