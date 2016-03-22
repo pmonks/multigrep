@@ -23,11 +23,24 @@
 
 (def aesops [aesop1 aesop2 aesop3 aesop4 aesop5])
 
-(defn- file-name
-  [^java.net.URL url]
-  (if (nil? url)
+(defmulti ^:private file-name
+  (fn [file] (type file)))
+
+(defmethod ^:private file-name java.lang.String
+  [file]
+  file)
+
+(defmethod ^:private file-name java.net.URL
+  [file]
+  (if (nil? file)
     nil
-    (.getName (io/file (.getPath (.toURI url))))))
+    (.getName (io/file (.getPath (.toURI file))))))
+
+(defmethod ^:private file-name java.io.File
+  [file]
+  (if (nil? file)
+    nil?
+    (.getName file)))
 
 (defn- file-name-line-number
   [grep-result-map]
@@ -117,31 +130,30 @@
     (io/copy (io/file aesop5) (io/file "greplace-test-aesop5.txt"))
 
     (fact "non-regex grep, string substitute, many files, no substitutions"
-      (greplace! #"PANTS" "pants" test-files)
+      (map file-name-line-number (greplace! #"PANTS" "pants" test-files))
       => '())
     (fact "non-regex grep, string substitute, many files, many substitutions"
-      (greplace! #"and the" "AND THE" test-files)
-      => '({:file "greplace-test-aesop1.txt" :line-number 1}
-           {:file "greplace-test-aesop2.txt" :line-number 1}
-           {:file "greplace-test-aesop4.txt" :line-number 1}))
+      (map file-name-line-number (greplace! #"and the" "AND THE" test-files))
+      => '(["greplace-test-aesop1.txt" 1]
+           ["greplace-test-aesop2.txt" 1]
+           ["greplace-test-aesop4.txt" 1]))
     (fact "regex grep, string substitute, many files, many substitution"
-      (greplace! #"(?i)(and|with) the" "and the" test-files)
-      => '({:file "greplace-test-aesop1.txt" :line-number 1}
-           {:file "greplace-test-aesop2.txt" :line-number 1}
-           {:file "greplace-test-aesop3.txt" :line-number 1}
-           {:file "greplace-test-aesop4.txt" :line-number 1}))
+      (map file-name-line-number (greplace! #"(?i)(and|with) the" "and the" test-files))
+      => '(["greplace-test-aesop1.txt" 1]
+           ["greplace-test-aesop2.txt" 1]
+           ["greplace-test-aesop3.txt" 1]
+           ["greplace-test-aesop4.txt" 1]))
     (fact "regex grep, function substitute, many files, many substitution"
-      (greplace! #"(?i)(and|with) the" (fn [m] (str (java.util.UUID/randomUUID))) test-files)
-      => '({:file "greplace-test-aesop1.txt" :line-number 1}
-           {:file "greplace-test-aesop2.txt" :line-number 1}
-           {:file "greplace-test-aesop3.txt" :line-number 1}
-           {:file "greplace-test-aesop4.txt" :line-number 1}))
-
+      (map file-name-line-number (greplace! #"(?i)(and|with) the" (fn [m] (str (java.util.UUID/randomUUID))) test-files))
+      => '(["greplace-test-aesop1.txt" 1]
+           ["greplace-test-aesop2.txt" 1]
+           ["greplace-test-aesop3.txt" 1]
+           ["greplace-test-aesop4.txt" 1]))
     ))
 
 (facts "greplace on-disk"
   (let [in-memory-threshold 0]   ; Force on-disk greplace
-    (let [test-file (io/file "greplace-test-output.txt")]
+    (let [test-file "greplace-test-aesop1.txt"]
       (io/copy (io/file aesop1) (io/file test-file))
 
       (fact "non-regex grep, string substitute, one file, no substitutions"
@@ -168,26 +180,24 @@
       (io/copy (io/file aesop4) (io/file "greplace-test-aesop4.txt"))
       (io/copy (io/file aesop5) (io/file "greplace-test-aesop5.txt"))
 
-      (fact "non-regex grep, string substitute, many files, no substitutions"
-        (greplace! #"PANTS" "pants" test-files in-memory-threshold)
-        => '())
-      (fact "non-regex grep, string substitute, many files, many substitutions"
-        (greplace! #"and the" "AND THE" test-files in-memory-threshold)
-        => '({:file "greplace-test-aesop1.txt" :line-number 1}
-             {:file "greplace-test-aesop2.txt" :line-number 1}
-             {:file "greplace-test-aesop4.txt" :line-number 1}))
-      (fact "regex grep, string substitute, many files, many substitution"
-        (greplace! #"(?i)(and|with) the" "and the" test-files in-memory-threshold)
-        => '({:file "greplace-test-aesop1.txt" :line-number 1}
-             {:file "greplace-test-aesop2.txt" :line-number 1}
-             {:file "greplace-test-aesop3.txt" :line-number 1}
-             {:file "greplace-test-aesop4.txt" :line-number 1}))
-      (fact "regex grep, function substitute, many files, many substitution"
-        (greplace! #"(?i)(and|with) the" (fn [m] (str (java.util.UUID/randomUUID))) test-files in-memory-threshold)
-        => '({:file "greplace-test-aesop1.txt" :line-number 1}
-             {:file "greplace-test-aesop2.txt" :line-number 1}
-             {:file "greplace-test-aesop3.txt" :line-number 1}
-             {:file "greplace-test-aesop4.txt" :line-number 1}))
-
+    (fact "non-regex grep, string substitute, many files, no substitutions"
+      (map file-name-line-number (greplace! #"PANTS" "pants" test-files))
+      => '())
+    (fact "non-regex grep, string substitute, many files, many substitutions"
+      (map file-name-line-number (greplace! #"and the" "AND THE" test-files))
+      => '(["greplace-test-aesop1.txt" 1]
+           ["greplace-test-aesop2.txt" 1]
+           ["greplace-test-aesop4.txt" 1]))
+    (fact "regex grep, string substitute, many files, many substitution"
+      (map file-name-line-number (greplace! #"(?i)(and|with) the" "and the" test-files))
+      => '(["greplace-test-aesop1.txt" 1]
+           ["greplace-test-aesop2.txt" 1]
+           ["greplace-test-aesop3.txt" 1]
+           ["greplace-test-aesop4.txt" 1]))
+    (fact "regex grep, function substitute, many files, many substitution"
+      (map file-name-line-number (greplace! #"(?i)(and|with) the" (fn [m] (str (java.util.UUID/randomUUID))) test-files))
+      => '(["greplace-test-aesop1.txt" 1]
+           ["greplace-test-aesop2.txt" 1]
+           ["greplace-test-aesop3.txt" 1]
+           ["greplace-test-aesop4.txt" 1]))
     )))
-
