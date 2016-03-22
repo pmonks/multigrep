@@ -108,7 +108,7 @@
         temp-file (java.io.File/createTempFile "greplace_" ".tmp")]
     (try
       (with-open [temp-w (io/writer temp-file)]
-        (io/copy file temp-file))
+        (io/copy (io/file file) temp-file))
       (with-open [temp-r (io/reader temp-file)]
         (reset! result (greplace-and-write-file regex substitution (line-seq temp-r) file)))
       (finally
@@ -127,4 +127,4 @@
 
 (defmethod greplace! true
   [regex substitution files in-memory-threshold]
-  (flatten (map (partial greplace! regex substitution in-memory-threshold) files)))
+  (flatten (map #(greplace! regex substitution % in-memory-threshold) files)))
