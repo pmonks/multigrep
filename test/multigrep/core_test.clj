@@ -184,24 +184,24 @@
       (io/copy (io/file aesop4) (io/file "greplace-test-aesop4.txt"))
       (io/copy (io/file aesop5) (io/file "greplace-test-aesop5.txt"))
 
-    (fact "non-regex grep, string substitute, many files, no substitutions"
-      (map file-name-line-number (greplace! #"PANTS" "pants" test-files))
-      => '())
-    (fact "non-regex grep, string substitute, many files, many substitutions"
-      (map file-name-line-number (greplace! #"and the" "AND THE" test-files))
-      => '(["greplace-test-aesop1.txt" 1]
-           ["greplace-test-aesop2.txt" 1]
-           ["greplace-test-aesop4.txt" 1]))
-    (fact "regex grep, string substitute, many files, many substitutions"
-      (map file-name-line-number (greplace! #"(?i)(and|with) the" "and the" test-files))
-      => '(["greplace-test-aesop1.txt" 1]
-           ["greplace-test-aesop2.txt" 1]
-           ["greplace-test-aesop3.txt" 1]
-           ["greplace-test-aesop4.txt" 1]))
-    (fact "regex grep, function substitute, many files, many substitutions"
-      (map file-name-line-number (greplace! #"(?i)(and|with) the" (fn [m] (str (java.util.UUID/randomUUID))) test-files))
-      => '(["greplace-test-aesop1.txt" 1]
-           ["greplace-test-aesop2.txt" 1]
-           ["greplace-test-aesop3.txt" 1]
-           ["greplace-test-aesop4.txt" 1]))
+      (fact "non-regex grep, string substitute, many files, no substitutions"
+        (map file-name-line-number (greplace! #"PANTS" "pants" test-files))
+        => '())
+      (fact "non-regex grep, string substitute, many files, many substitutions"
+        (map file-name-line-number (greplace! #"and the" "AND THE" test-files))
+        => '(["greplace-test-aesop1.txt" 1]
+             ["greplace-test-aesop2.txt" 1]
+             ["greplace-test-aesop4.txt" 1]))
+      (fact "regex grep, string substitute, many files, many substitutions"
+        (map file-name-line-number (greplace! #"(?i)(and|with) the" "and the" test-files))
+        => '(["greplace-test-aesop1.txt" 1]
+             ["greplace-test-aesop2.txt" 1]
+             ["greplace-test-aesop3.txt" 1]
+             ["greplace-test-aesop4.txt" 1]))
+      (fact "regex grep, function substitute, many files, many substitutions"
+        (map file-name-line-number (greplace! #"(?i)(and|with) the" (fn [m] (str (java.util.UUID/randomUUID))) test-files))
+        => '(["greplace-test-aesop1.txt" 1]
+             ["greplace-test-aesop2.txt" 1]
+             ["greplace-test-aesop3.txt" 1]
+             ["greplace-test-aesop4.txt" 1]))
     )))
