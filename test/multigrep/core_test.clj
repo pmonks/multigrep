@@ -102,9 +102,8 @@
       (map :line-number (greplace! #"(?i)ants" "ANTS" test-file))
       => '(1 4 6 14))
     (fact "regex grep, function substitute, one file, one substitution"
-      (map :line-number (greplace! #"(?i)grasshopper" (fn [m] (.toString (java.util.UUID/randomUUID))) test-file))
+      (map :line-number (greplace! #"(?i)grasshopper" (fn [m] (str (java.util.UUID/randomUUID))) test-file))
       => '(1 5))
-
     ))
 
 (facts "greplace on-disk"
@@ -122,8 +121,7 @@
       (map :line-number (greplace! #"(?i)ants" "ANTS" test-file in-memory-threshold))
       => '(1 4 6 14))
     (fact "in-memory, regex grep, function substitute, one file, one substitution"
-      (map :line-number (greplace! #"(?i)grasshopper" (fn [m] (s/replace (.toString (java.util.UUID/randomUUID)) "-" "")) test-file in-memory-threshold))
+      (map :line-number (greplace! #"(?i)grasshopper" (fn [m] (str (java.util.UUID/randomUUID))) test-file in-memory-threshold))
       => '(1 5))
-
     ))
 
