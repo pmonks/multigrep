@@ -10,7 +10,7 @@
 ;    Peter Monks - initial implementation
 
 (defproject org.clojars.pmonks/multigrep "0.3.0"
-  :description        "A little library that provides various kinds of regex-based file grepping."
+  :description        "A little Clojure library that provides regex-based file grepping and/or text substitution."
   :url                "https://github.com/pmonks/multigrep"
   :license            {:name "Eclipse Public License"
                        :url  "http://www.eclipse.org/legal/epl-v10.html"}
