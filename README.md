@@ -144,8 +144,6 @@ More comprehensive examples can be seen in the [unit tests](https://github.com/p
 
 [Bug Tracker](https://github.com/pmonks/multigrep/issues)
 
-[![endorse](https://api.coderwall.com/pmonks/endorsecount.png)](https://coderwall.com/pmonks)
-
 ## License
 
 Copyright © 2014-2016 Peter Monks (pmonks@gmail.com)
