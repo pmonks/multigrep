@@ -26,6 +26,10 @@
 (defmulti ^:private file-name
   (fn [file] (type file)))
 
+(defmethod ^:private file-name nil
+  [file]
+  nil)
+
 (defmethod ^:private file-name java.lang.String
   [file]
   file)
