@@ -9,7 +9,7 @@
 ; Contributors:
 ;    Peter Monks - initial implementation
 
-(defproject org.clojars.pmonks/multigrep "0.3.0-SNAPSHOT"
+(defproject org.clojars.pmonks/multigrep "0.3.0"
   :description        "A little library that provides various kinds of regex-based file grepping."
   :url                "https://github.com/pmonks/multigrep"
   :license            {:name "Eclipse Public License"
