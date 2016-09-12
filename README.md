@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/pmonks/multigrep.svg?branch=master)](https://travis-ci.org/pmonks/multigrep)
+[![Open Issues](https://img.shields.io/github/issues/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/issues)
+[![License](https://img.shields.io/github/license/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/blob/master/LICENSE)
 [![Dependencies Status](http://jarkeeper.com/pmonks/multigrep/status.svg)](http://jarkeeper.com/pmonks/multigrep)
 
 # multigrep
