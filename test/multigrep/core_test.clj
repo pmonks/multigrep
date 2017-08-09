@@ -1,5 +1,5 @@
 ;
-; Copyright © 2014-2016 Peter Monks (pmonks@gmail.com)
+; Copyright © 2014-2017 Peter Monks (pmonks@gmail.com)
 ;
 ; All rights reserved. This program and the accompanying materials
 ; are made available under the terms of the Eclipse Public License v1.0
@@ -23,8 +23,7 @@
 
 (def aesops [aesop1 aesop2 aesop3 aesop4 aesop5])
 
-(defmulti ^:private file-name
-  (fn [file] (type file)))
+(defmulti ^:private file-name type)
 
 (defmethod ^:private file-name nil
   [file]
