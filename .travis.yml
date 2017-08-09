@@ -1,7 +1,39 @@
 language: clojure
-lein: lein2
-script: lein2 midje
-jdk:
-  - openjdk7
-  - oraclejdk8
 sudo: false
+jdk:
+  - oraclejdk8
+lein: lein2
+
+env:
+  global:
+    # CLOJARS_USERNAME
+    - secure: "MtuE7G73HI1NBC1yA9V0+1TYazaixEzlxDB+Nz6FM7Cyv7GUmwGl3ISsClZBNnT+knyVtkpl3tOLLZU9p9IND7PwXTUo4ea4AD/WNRCQeXczj6D4UrN7ie1UO4Bkh4pKgCFxihmhBFZa7mFCi4P+SXUrfhtd9v3kEZH+3lKcJJc="
+    # CLOJARS_PASSWORD
+    - secure: "QX5+Tt4S4exZ2TVBSrTDjQqIECowMGdUvYyR+vDHRaqDVxxX3tQpA6YlC6XuuM7GIBqpZgU5a6/rkFA3fJlPYR6q4exlA4oQUwTIRJiT8Vo1Zysfb1IrfgydBShrQQCkyDc+S+SaRY95xVZ0QeLWv2UWq+7pInIgSs3Xc6SEmV0="
+    # GITHUB_TOKEN
+    - secure: "PHZzwIVF/BZMIeSP6BmFrVOT1GiKfU4rjMtHm2y/N/AZleiGoesMOdbS+Ru/R3fBwt3ZLDk3/PXWXjwKRKNwcOILPutN0CMEVrMIz0XTvd2IS6Ci37gsnCmfmN6kk77i/g/USDD/Is3w4SHB8ye7rR6L1UuQWQV+gv5PXZGga2Y="
+
+script: lein2 do check, midje
+
+deploy:
+  # Deploy binaries to Clojars
+  - provider: script
+    skip_cleanup: true
+    script: lein2 deploy
+    on:
+      branch: master
+  # Generate documentation
+  - provider: script
+    skip_cleanup: true
+    script: lein2 codox
+    on:
+      branch: master
+  # Deploy documentation
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    email: pmonks+travisci@gmail.com
+    name: Travis CI - pmonks
+    local_dir: target/doc
+    on:
+      branch: master
