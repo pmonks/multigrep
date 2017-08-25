@@ -2,7 +2,7 @@ language: clojure
 sudo: false
 jdk:
   - oraclejdk8
-lein: lein2
+lein: 2.7.1
 
 env:
   global:
@@ -13,19 +13,19 @@ env:
     # GITHUB_TOKEN
     - secure: "PHZzwIVF/BZMIeSP6BmFrVOT1GiKfU4rjMtHm2y/N/AZleiGoesMOdbS+Ru/R3fBwt3ZLDk3/PXWXjwKRKNwcOILPutN0CMEVrMIz0XTvd2IS6Ci37gsnCmfmN6kk77i/g/USDD/Is3w4SHB8ye7rR6L1UuQWQV+gv5PXZGga2Y="
 
-script: lein2 do check, midje
+script: lein do check, midje
 
 deploy:
   # Deploy binaries to Clojars
   - provider: script
     skip_cleanup: true
-    script: lein2 deploy
+    script: lein deploy
     on:
       branch: master
   # Generate documentation
   - provider: script
     skip_cleanup: true
-    script: lein2 codox
+    script: lein codox
     on:
       branch: master
   # Deploy documentation
