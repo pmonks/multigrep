@@ -14,14 +14,14 @@
   :url                 "https://github.com/pmonks/multigrep"
   :license             {:name "Eclipse Public License"
                         :url  "http://www.eclipse.org/legal/epl-v10.html"}
-  :min-lein-version    "2.7.0"
+  :min-lein-version    "2.8.1"
   :plugins             [
                          [lein-codox "0.10.3"]
                        ]
   :dependencies        [
-                         [org.clojure/clojure "1.8.0"]
+                         [org.clojure/clojure "1.9.0"]
                        ]
-  :profiles            {:dev     {:dependencies [[midje      "1.8.3"]]
+  :profiles            {:dev     {:dependencies [[midje      "1.9.1"]]
                                   :plugins      [[lein-midje "3.2.1"]]}
                         :uberjar {:aot :all}}
   :deploy-repositories [
