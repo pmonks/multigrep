@@ -51,6 +51,6 @@ The library provides two functions - `grep` (for searching for text within files
 
 ## License
 
-Copyright © 2014-2017 Peter Monks (pmonks@gmail.com)
+Copyright © 2014 Peter Monks (pmonks@gmail.com)
 
 Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) either version 1.0 or (at your option) any later version.
