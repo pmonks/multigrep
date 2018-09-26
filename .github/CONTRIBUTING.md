@@ -37,7 +37,8 @@ To make review of PRs easier, please:
  * Keep PRs small and cohesive - if you have multiple contributions, please submit them as independent PRs.
  * Reference issue #s if your PR has anything to do with an issue (even if it doesn't address it).
  * Minimise non-functional changes (e.g. whitespace shenanigans).
- * Ensure all new files include a header comment block containing the Eclipse Public License v1.0 and your copyright information.
+ * Ensure all new files include a header comment block containing the Eclipse Public License v2.0 and your copyright information.
+ * If your PR adds dependencies, please call attention to that in the description of the PR.
 
 
 ## Commit and PR Messages

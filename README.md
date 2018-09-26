@@ -40,6 +40,25 @@ Require it in your application:
 The library provides two functions - `grep` (for searching for text within files) and (since v0.3.0) `greplace!` (for searching and replacing text within files).
 [The API documentation](https://pmonks.github.io/multigrep/) has full details, and [the unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj) have comprehensive examples.
 
+## Tested Versions
+
+multigrep is [tested on](https://travis-ci.com/pmonks/multigrep):
+
+|                | JVM v1.6        | JVM v1.7       | JVM v1.8 | JVM v9 | JVM v10 | JVM v11 |
+|           ---: |  :---:          |  :---:         |  :---:   |  :---: |  :---:  |  :---:  |
+| Clojure 1.5.1  | ❌<sup>1</sup> | ✅             | ✅      | ✅    | ✅      | ✅<sup>3</sup>      |
+| Clojure 1.6.0  | ❌<sup>1</sup> | ✅             | ✅      | ✅    | ✅      | ✅<sup>3</sup>      |
+| Clojure 1.7.0  | ❌<sup>1</sup> | ✅             | ✅      | ✅    | ✅      | ✅<sup>3</sup>      |
+| Clojure 1.8.0  | ❌<sup>1</sup> | ✅             | ✅      | ✅    | ✅      | ✅<sup>3</sup>      |
+| Clojure 1.9.0  | ❌<sup>1</sup> | ✅             | ✅      | ✅    | ✅      | ✅<sup>3</sup>      |
+| Clojure 1.10.0 | ❌<sup>1</sup> | ❌<sup>2</sup> | ✅      | ✅    | ✅      | ✅<sup>3</sup>      |
+
+<sup>1</sup> Leiningen v2.8 only supports JVM v1.7 and up
+
+<sup>2</sup> Clojure v1.10 only supports JVM v1.8 and up
+
+<sup>3</sup> Midje (used for unit testing) [does not yet function on JVM v11](https://github.com/marick/lein-midje/issues/66)
+
 ## Contributors
 [Erik Assum](https://github.com/slipset) - [edumucated me in the use of ```partial```.](https://twitter.com/slipset/status/522620387709169664)
 
@@ -53,4 +72,4 @@ The library provides two functions - `grep` (for searching for text within files
 
 Copyright © 2014 Peter Monks (pmonks@gmail.com)
 
-Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html) either version 1.0 or (at your option) any later version.
+Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v20.html) either version 2.0 or (at your option) any later version.
