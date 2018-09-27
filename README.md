@@ -56,7 +56,7 @@ multigrep is [tested on](https://travis-ci.com/pmonks/multigrep):
 
 <sup>2</sup> Midje (used for unit testing) only supports Clojure v1.7 and up
 
-<sup>3</sup> Midje (used for unit testing) [does not yet function on JVM v11](https://github.com/marick/lein-midje/issues/66)
+<sup>3</sup> Clojure doesn't yet support JVM v11 (see [CLJ-2374](https://dev.clojure.org/jira/browse/CLJ-2374))
 
 <sup>4</sup> Clojure v1.10 only supports JVM v1.8 and up
 
