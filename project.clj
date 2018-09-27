@@ -16,6 +16,8 @@
                         :name                    "Eclipse Public License 2.0"
                         :url                     "http://www.eclipse.org/legal/epl-v20.html"}
   :min-lein-version    "2.8.1"
+  :repositories        [["sonatype-snapshots" {:url "https://oss.sonatype.org/content/groups/public" :snapshots true}]
+                        ["jitpack"            {:url "https://jitpack.io"}]]
   :plugins             [[lein-codox "0.10.3"]]
   :dependencies        [[org.clojure/clojure "1.9.0"]]
   :profiles            {:dev  {:dependencies [[midje         "1.9.2"]]
