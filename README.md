@@ -30,7 +30,7 @@ $ lein try org.clojars.pmonks/multigrep
 Or (as of v0.4.0), if you have done a `brew install clojure` you can simply
 
 ```shell
-$ clj -Sdeps '{:deps {org.clojars.pmonks/spinner {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number >= 0.4.0
+$ clj -Sdeps '{:deps {org.clojars.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number >= 0.4.0
 ```
 
 Either way, you will be dropped in a REPL with the library downloaded and ready for use.
