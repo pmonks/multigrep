@@ -20,6 +20,21 @@ The latest version is:
 
 [![version](https://clojars.org/org.clojars.pmonks/multigrep/latest-version.svg)](https://clojars.org/org.clojars.pmonks/multigrep)
 
+### Trying it Out
+Alternatively, you may prefer to kick the library's tyres without creating a project.  This is a snap with the awesome [`lein try` plugin](https://github.com/rkneufeld/lein-try):
+
+```shell
+$ lein try org.clojars.pmonks/multigrep
+```
+
+Or, if you have done a `brew install clojure`, you can simply
+
+```shell
+$ clj -Sdeps '{:deps {org.clojars.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number
+```
+
+Either way, you will be dropped in a REPL with the library downloaded and ready for use.
+
 ## Usage
 
 The multigrep functionality is provided by the `multigrep.core` namespace.
