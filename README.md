@@ -9,25 +9,18 @@ A little Clojure library that provides regex-based file grepping and/or text sub
 
 ## Installation
 
-multigrep is available as a Maven artifact from [Clojars](https://clojars.org/org.clojars.pmonks/multigrep).
-Plonk the following in your project.clj :dependencies, `lein deps` and you should be good to go:
-
-```clojure
-[org.clojars.pmonks/multigrep "#.#.#"]
-```
-
-The latest version is:
+multigrep is available as a Maven artifact from [Clojars](https://clojars.org/org.clojars.pmonks/multigrep).  The latest version is:
 
 [![version](https://clojars.org/org.clojars.pmonks/multigrep/latest-version.svg)](https://clojars.org/org.clojars.pmonks/multigrep)
 
 ### Trying it Out
-Alternatively, you may prefer to kick the library's tyres without creating a project.  This is a snap with the awesome [`lein try` plugin](https://github.com/rkneufeld/lein-try):
+If you prefer to kick the library's tyres without creating a project, you can use the [`lein try` plugin](https://github.com/rkneufeld/lein-try):
 
 ```shell
 $ lein try org.clojars.pmonks/multigrep
 ```
 
-Or (as of v0.4.0), if you have done a `brew install clojure` you can simply
+or (as of v0.4.0), if you have installed the [Clojure CLI tools](https://clojure.org/guides/getting_started#_clojure_installer_and_cli_tools):
 
 ```shell
 $ clj -Sdeps '{:deps {org.clojars.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number >= 0.4.0
