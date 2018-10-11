@@ -15,7 +15,7 @@
             [clojure.test    :refer :all]
             [multigrep.core  :refer :all]))
 
-(println "\n☔️ Running tests on Clojure" (clojure-version) "/ JVM" (System/getProperty "java.version"))
+(println "\n☔️ Running tests on Clojure" (clojure-version) "/ JVM" (System/getProperty "java.version") (str "(" (System/getProperty "java.vm.name") " v" (System/getProperty "java.vm.version") ")"))
 
 (def aesop1 (io/resource "The Ants and the Grasshopper.txt"))
 (def aesop2 (io/resource "The Cat and the Mice.txt"))
