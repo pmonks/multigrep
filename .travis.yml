@@ -5,7 +5,7 @@ jdk:
   - openjdk7
   - oraclejdk8
   - oraclejdk9
-  - oraclejdk10
+  - openjdk10
   - openjdk11   # Don't fall for Oracle's trick: https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html
 
 env:
@@ -16,6 +16,10 @@ env:
     - secure: "VQNi+q3shBOsvY7tSiOPTqx8Y7T+LSbW3Atc/EjsIZPm9sDzbq58QTRsLhb1weRPIus8p7EOtJ0XgXtWZQVM7yo4IMS5qausH6JqqkeYNTiRYBMFcpzY2M6l1BHek+UmWia/S6Ov4MBXS5Pzo0UP+IWtGaZcR0IeQS9WQvCvpextMa78zzSnyKFpqCn8TM8O7yZt92lQOGfkv9K8K0YuFTHBrxeD24kE3VMfFp5qt1RWtzX20BjizUdtds4NkUkOl8GLzRmiYLCk8WQJ/q44ntWjt/Aw67P4C+X+c1VYwCyIeQNESS/m6fWezCb3vQd+7D/FmAZd6zvNMXBzaUFfP/y1llU4ihV87fFjPqv0ijjgZ7mEnpLl0iEsBVvJ28eV207ZiT339up3MinqhUnbiyTMIbhIejcEbTQz7C8ChdgwxmmkFO+sX9xpcyWANRvnp7ef+QEWbYoJGjnFhB8/Z28ZcMC+lvGeZMC0hx30lmScjnJ1Wp4KiezsXlEOboiM8l80+1J/I7oJnXHWUDI+lupFfflWTJbB0rL28oSdwfneNQAvXehRKcboxKpvR0CqSJSeSBvf3GhOTI5xZJRmFyrH1pZwZyoPdCAOzc5qWg3eoG6P5xMHLxR553ZrCOW/jSpe7lRp7RxRPMz4/8fgsT8WMEg440JRM9BxS4z4asI="
     # GITHUB_TOKEN
     - secure: "P9VndUzDh96PVXPXrYCFY03h0OzDFpQzxUsNrymXTn5WGYA6pVk70z76aqMRMXdc1wDQj5007MD+t+S3tg4n2xgC18O793dFXIISuBsUm2YBJ36kNflmQZ7hX4IchVgTEvRGCPV3OJvs1M0JpYGOKgd9lixhfE5zG3heO21eL7gFSS2LVtI0RMVZaUtecz5gaTVpvY+JKR91e5gfFzYUsGFOy2uRxaTlKrglcxHkhr53FqTIXo/9F46V8inzsOryumbthjg3hdSkVoOh9riNBBGsod87yoncX6WfCHn3aQWQdfTmas8vNIDgFlx8ro6m87xy8COLXDIan6wyJQ/iyC/cbYP0DGy8XDAEIb/4S4m/ARVivUGMlDfAMsnsoOIF1q2KZ02OBzM20Br1iVv181Nlfi6+iIHb+am+cmnpJ5KJuSU9OdH/qfqCT/fCiwPpajSaNeNlafqxjc8yzuC8+Jlm+yFQb0KJkZKXtHDgLRLC8+5iwOf1BTwnBdhqbw5Og8N6HocM2yRG+92hSaGI14um/Eb4K0XKit9XzGRdddjj8s2A2zX3PXW8ZfbWjPB15REht/LAzpTcmfU7dOq8m4RTfRcwPEiJ/oosG8CpX3bJ3RXl6hsEbxXzqIOtUmIRIpN87qIpwAcGqe4rnhQDMs0mM9Yn3u1W0DkPW75TTc4="
+
+before_install:
+  # Workaround for TravisCI's garbage openjdk10 base image
+  - if [[ $JAVA_HOME == *openjdk10* ]]; then rm "${JAVA_HOME}/lib/security/cacerts"; ln -s /etc/ssl/certs/java/cacerts "${JAVA_HOME}/lib/security/cacerts"; fi
 
 script:
   - export PROFILES=+1.5:+1.6:+1.7:+1.8:+1.9
