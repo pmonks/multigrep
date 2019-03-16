@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.com/pmonks/multigrep.svg?branch=master)](https://travis-ci.com/pmonks/multigrep)
-[![Open Issues](https://img.shields.io/github/issues/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/issues)
-[![License](https://img.shields.io/github/license/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/blob/master/LICENSE)
-[![Dependencies Status](https://versions.deps.co/pmonks/multigrep/status.svg)](https://versions.deps.co/pmonks/multigrep)
+[![Build Status](https://travis-ci.com/clj-commons/multigrep.svg?branch=master)](https://travis-ci.com/clj-commons/multigrep)
+[![Open Issues](https://img.shields.io/github/issues/clj-commons/multigrep.svg)](https://github.com/clj-commons/multigrep/issues)
+[![License](https://img.shields.io/github/license/clj-commons/multigrep.svg)](https://github.com/clj-commons/multigrep/blob/master/LICENSE)
+[![Dependencies Status](https://versions.deps.co/clj-commons/multigrep/status.svg)](https://versions.deps.co/clj-commons/multigrep)
 
 # multigrep
 
@@ -9,21 +9,21 @@ A little Clojure library that provides regex-based file grepping and/or text sub
 
 ## Installation
 
-multigrep is available as a Maven artifact from [Clojars](https://clojars.org/org.clojars.pmonks/multigrep).  The latest version is:
+multigrep is available as a Maven artifact from [Clojars](https://clojars.org/clj-commons/multigrep).  The latest version is:
 
-[![version](https://clojars.org/org.clojars.pmonks/multigrep/latest-version.svg)](https://clojars.org/org.clojars.pmonks/multigrep)
+[![version](https://clojars.org/clj-commons/multigrep/latest-version.svg)](https://clojars.org/clj-commons/multigrep)
 
 ### Trying it Out
 If you prefer to kick the library's tyres without creating a project, you can use the [`lein try` plugin](https://github.com/rkneufeld/lein-try):
 
 ```shell
-$ lein try org.clojars.pmonks/multigrep
+$ lein try clj-commons/multigrep
 ```
 
 or (as of v0.4.0), if you have installed the [Clojure CLI tools](https://clojure.org/guides/getting_started#_clojure_installer_and_cli_tools):
 
 ```shell
-$ clj -Sdeps '{:deps {org.clojars.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number >= 0.4.0
+$ clj -Sdeps '{:deps {clj-commons/multigrep {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number >= 0.4.0
 ```
 
 Either way, you will be dropped in a REPL with the library downloaded and ready for use.
@@ -46,11 +46,11 @@ Require it in your application:
 ```
 
 The library provides two functions - `grep` (for searching for text within files) and (since v0.3.0) `greplace!` (for searching and replacing text within files).
-[The API documentation](https://pmonks.github.io/multigrep/) has full details, and [the unit tests](https://github.com/pmonks/multigrep/blob/master/test/multigrep/core_test.clj) have comprehensive examples.
+[The API documentation](https://clj-commons.github.io/multigrep/) has full details, and [the unit tests](https://github.com/clj-commons/multigrep/blob/master/test/multigrep/core_test.clj) have comprehensive examples.
 
 ## Tested Versions
 
-multigrep is [tested on](https://travis-ci.com/pmonks/multigrep):
+multigrep is [tested on](https://travis-ci.com/clj-commons/multigrep):
 
 |                | JVM v1.6         | JVM v1.7       | JVM v1.8        | JVM v9         | JVM v10        | JVM v11         |
 |           ---: |  :---:           |  :---:         |  :---:          |  :---:         |  :---:         |  :---:          |
@@ -73,9 +73,9 @@ multigrep is [tested on](https://travis-ci.com/pmonks/multigrep):
 
 ## Developer Information
 
-[GitHub project](https://github.com/pmonks/multigrep)
+[GitHub project](https://github.com/clj-commons/multigrep)
 
-[Bug Tracker](https://github.com/pmonks/multigrep/issues)
+[Bug Tracker](https://github.com/clj-commons/multigrep/issues)
 
 ## License
 
