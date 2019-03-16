@@ -9,7 +9,7 @@
 ; Contributors:
 ;    Peter Monks - initial implementation
 
-(defproject clj-commons/multigrep "0.5.0"
+(defproject clj-commons/multigrep "0.6.0-SNAPSHOT"
   :description         "A little Clojure library that provides regex-based file grepping and/or text substitution."
   :url                 "https://github.com/clj-commons/multigrep"
   :license             {:spdx-license-identifier "EPL-2.0"
