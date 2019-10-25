@@ -20,7 +20,7 @@
                         ["jitpack"            {:url "https://jitpack.io"}]]
   :dependencies        [[org.clojure/clojure "1.10.1"]]
   :profiles            {:dev  {:plugins      [[lein-licenses "0.2.2"]
-                                              [lein-codox    "0.10.4"]]}
+                                              [lein-codox    "0.10.7"]]}
                         :1.5  {:dependencies [[org.clojure/clojure "1.5.1"]]}
                         :1.6  {:dependencies [[org.clojure/clojure "1.6.0"]]}
                         :1.7  {:dependencies [[org.clojure/clojure "1.7.0"]]}
