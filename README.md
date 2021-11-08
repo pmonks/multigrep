@@ -11,7 +11,7 @@ A little Clojure library that provides regex-based file grepping and/or text sub
 
 ## Installation
 
-multigrep is available as a Maven artifact from [Clojars](https://clojars.org/clj-commons/multigrep).
+`multigrep` is available as a Maven artifact from [Clojars](https://clojars.org/clj-commons/multigrep).
 
 ### Trying it Out
 
@@ -44,10 +44,8 @@ Require it in your application:
   (:require [multigrep.core :as mg]))
 ```
 
-The library provides two functions - `grep` (for searching for text within files) and (since v0.3.0) `greplace!` (for searching and replacing text within files).
-[The API documentation](https://clj-commons.github.io/multigrep/) has full details, and [the unit tests](https://github.com/clj-commons/multigrep/blob/master/test/multigrep/core_test.clj) have comprehensive examples.
-
-The [cljdoc](https://cljdoc.org/) project also publishes [up-to-date documentation for this project](https://cljdoc.org/d/clj-commons/multigrep/CURRENT).
+The library provides two functions - `grep` (for searching for text within files) and `greplace!` (for searching and replacing text within files).
+[The API documentation](https://clj-commons.github.io/multigrep/) has full details, and [the unit tests](https://github.com/clj-commons/multigrep/blob/main/test/multigrep/core_test.clj) have comprehensive examples.
 
 ### API Documentation
 
