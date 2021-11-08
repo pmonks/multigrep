@@ -1,5 +1,5 @@
 ;
-; Copyright © 2014 Peter Monks (pmonks@gmail.com)
+; Copyright © 2014 Peter Monks
 ;
 ; All rights reserved. This program and the accompanying materials
 ; are made available under the terms of the Eclipse Public License v2.0
@@ -8,6 +8,9 @@
 ;
 ; Contributors:
 ;    Peter Monks - initial implementation
+;
+; SPDX-License-Identifier: EPL-2.0
+;
 
 (ns multigrep.core-test
   (:require [clojure.java.io :as    io]
