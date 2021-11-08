@@ -103,7 +103,8 @@ clojure -A:deps -T:build help/doc"
   (-> opts
       (set-opts)
       (ci)
-      (pbr/check-release)))
+      (pbr/check-release))
+  (println "\nReady to release!"))
 
 (defn release
   "Release a new version of the library."
