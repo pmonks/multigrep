@@ -88,7 +88,7 @@ clojure -A:deps -T:build help/doc"
     (outdated)
     (check)
     (lint)
-    (test)))
+    (run-tests)))
 ;  (let [opts (set-opts opts)]
 ;    (try (outdated opts) (catch clojure.lang.ExceptionInfo _))  ; Report errors here as warnings
 ;    (try (check    opts) (catch clojure.lang.ExceptionInfo _))  ; Ignore errors until https://github.com/athos/clj-check/issues/4 is fixed
