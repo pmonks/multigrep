@@ -20,7 +20,7 @@
   "Greps a single line with multiple regexes, returning a sequence of matches."
   [file regexes line-number line]
   (remove nil? (map #(let [matches (re-seq % line)]
-                       (if (not-empty matches)
+                       (when (not-empty matches)
                          {
                            :file        file
                            :line        line
@@ -76,8 +76,8 @@ The optional fourth parameter specifies at what file size processing should swit
   {:arglists '([r s f]
                [r s f in-memory-threshold])}
   (fn
-    ([r s f]           :add-default-threshold)
-    ([r s f threshold] (sequential? f))))
+    ([_ _ _]   :add-default-threshold)
+    ([_ _ f _] (sequential? f))))
 
 (def ^:private default-in-memory-greplace-threshold (* 1024 1024))  ; 1MB
 
@@ -111,8 +111,7 @@ The optional fourth parameter specifies at what file size processing should swit
   (let [result    (atom '())
         temp-file (java.io.File/createTempFile "greplace_" ".tmp")]
     (try
-      (with-open [temp-w (io/writer temp-file)]
-        (io/copy (io/file file) temp-file))
+      (io/copy (io/file file) temp-file)
       (with-open [temp-r (io/reader temp-file)]
         (reset! result (greplace-and-write-file regex substitution (line-seq temp-r) file)))
       (finally
