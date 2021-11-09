@@ -1,15 +1,19 @@
 ;
 ; Copyright © 2021 Peter Monks
 ;
-; All rights reserved. This program and the accompanying materials
-; are made available under the terms of the Eclipse Public License v2.0
-; which accompanies this distribution, and is available at
-; http://www.eclipse.org/legal/epl-v20.html
+; Licensed under the Apache License, Version 2.0 (the "License");
+; you may not use this file except in compliance with the License.
+; You may obtain a copy of the License at
 ;
-; Contributors:
-;    Peter Monks - initial implementation
+;     http://www.apache.org/licenses/LICENSE-2.0
 ;
-; SPDX-License-Identifier: EPL-2.0
+; Unless required by applicable law or agreed to in writing, software
+; distributed under the License is distributed on an "AS IS" BASIS,
+; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+; See the License for the specific language governing permissions and
+; limitations under the License.
+;
+; SPDX-License-Identifier: Apache-2.0
 ;
 
 (ns build
@@ -25,7 +29,7 @@ clojure -A:deps -T:build help/doc"
             [tools-licenses.tasks    :as lic]
             [pbr.tasks               :as pbr]))
 
-(def lib       'clj-commons/multigrep)
+(def lib       'com.github.pmonks/multigrep)
 (def version   (format "1.0.%s" (b/git-count-revs nil)))
 
 ; Utility fns
@@ -37,11 +41,11 @@ clojure -A:deps -T:build help/doc"
          :write-pom    true
          :validate-pom true
          :pom          {:description      "A little Clojure library that provides regex-based file grepping and/or text substitution."
-                        :url              "https://github.com/clj-commons/multigrep"
+                        :url              "https://github.com/pmonks/multigrep"
                         :licenses         [:license   {:name "Eclipse Public License 2.0" :url "https://www.eclipse.org/legal/epl-2.0/"}]
                         :developers       [:developer {:id "pmonks" :name "Peter Monks" :email "pmonks+multigrep@gmail.com"}]
-                        :scm              {:url "https://github.com/clj-commons/multigrep" :connection "scm:git:git://github.com/clj-commons/multigrep.git" :developer-connection "scm:git:ssh://git@github.com/clj-commons/multigrep.git"}
-                        :issue-management {:system "github" :url "https://github.com/clj-commons/multigrep/issues"}}))
+                        :scm              {:url "https://github.com/pmonks/multigrep" :connection "scm:git:git://github.com/pmonks/multigrep.git" :developer-connection "scm:git:ssh://git@github.com/pmonks/multigrep.git"}
+                        :issue-management {:system "github" :url "https://github.com/pmonks/multigrep/issues"}}))
 
 ; Build tasks
 (defn clean
