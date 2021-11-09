@@ -9,7 +9,7 @@ Each map in the sequence has these keys:
     :line-number  ; line-number of that line (note: 1 based)
     :regex        ; the entry in r that matched
     :re-seq       ; the output from re-seq for this line and this regex
-  }</pre></div><div class="src-link"><a href="https://github.com/clj-commons/multigrep/blob/main/src/multigrep/core.clj#L33">view source</a></div></div><div class="public anchor" id="var-greplace.21"><h3>greplace!</h3><h4 class="type">multimethod</h4><div class="usage"><code>(greplace! r s f)</code><code>(greplace! r s f in-memory-threshold)</code></div><div class="doc"><pre class="plaintext">Applies r (a single regex) to f (one or more things that can be read by clojure.io/reader), substituting s (a string, or a function of one parameter (the match(es) from the regex) returning a string).
+  }</pre></div><div class="src-link"><a href="https://github.com/pmonks/multigrep/blob/main/src/multigrep/core.clj#L37">view source</a></div></div><div class="public anchor" id="var-greplace.21"><h3>greplace!</h3><h4 class="type">multimethod</h4><div class="usage"><code>(greplace! r s f)</code><code>(greplace! r s f in-memory-threshold)</code></div><div class="doc"><pre class="plaintext">Applies r (a single regex) to f (one or more things that can be read by clojure.io/reader), substituting s (a string, or a function of one parameter (the match(es) from the regex) returning a string).
 
 Returns a sequence of maps representing each of the substitutions.  Each map in the sequence has these keys:
   {
@@ -17,4 +17,4 @@ Returns a sequence of maps representing each of the substitutions.  Each map in 
     :line-number  ; line-number of the line that had one or more substitutions (note: 1 based)
   }
 
-The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.  It defaults to 1MB.</pre></div><div class="src-link"><a href="https://github.com/clj-commons/multigrep/blob/main/src/multigrep/core.clj#L66">view source</a></div></div></div></body></html>
+The optional fourth parameter specifies at what file size processing should switch from in-memory to on-disk.  It defaults to 1MB.</pre></div><div class="src-link"><a href="https://github.com/pmonks/multigrep/blob/main/src/multigrep/core.clj#L70">view source</a></div></div></div></body></html>
