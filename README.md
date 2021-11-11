@@ -24,7 +24,7 @@ $ clj -Sdeps '{:deps {com.github.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # W
 #### Leiningen
 
 ```shell
-$ lein try pmonks/multigrep
+$ lein try com.github.pmonks/spinner
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ Require it in your application:
 ```
 
 The library provides two functions - `grep` (for searching for text within files) and `greplace!` (for searching and replacing text within files).
-[The API documentation](https://pmonks.github.io/multigrep/) has full details, and [the unit tests](https://github.com/pmonks/multigrep/blob/main/test/multigrep/core_test.clj) have comprehensive examples.
+[The API documentation](https://pmonks.github.io/multigrep/) has full details, and [the unit tests](https://github.com/pmonks/multigrep/blob/main/test/multigrep/core_test.clj) contain comprehensive usage examples.
 
 ### API Documentation
 
