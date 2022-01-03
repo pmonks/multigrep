@@ -1,7 +1,7 @@
 | | | |
 |---:|:---:|:---:|
-| [**main**](https://github.com/pmonks/multigrep/tree/main) | [![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/multigrep/actions?query=workflow%3Alint) | [![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies) |
-| [**dev**](https://github.com/pmonks/multigrep/tree/dev)  | [![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3Alint) | [![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies) |
+| [**main**](https://github.com/pmonks/multigrep/tree/main) | [![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/multigrep/actions?query=workflow%3ACI) | [![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies) |
+| [**dev**](https://github.com/pmonks/multigrep/tree/dev)  | [![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3ACI) | [![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies) |
 
 [![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/multigrep)](https://clojars.org/com.github.pmonks/multigrep/) [![Open Issues](https://img.shields.io/github/issues/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/issues) [![License](https://img.shields.io/github/license/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/blob/main/LICENSE)
 
