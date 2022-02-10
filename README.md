@@ -24,7 +24,7 @@ $ clj -Sdeps '{:deps {com.github.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # W
 #### Leiningen
 
 ```shell
-$ lein try com.github.pmonks/spinner
+$ lein try com.github.pmonks/multigrep
 ```
 
 ## Usage
