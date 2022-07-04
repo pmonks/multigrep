@@ -18,6 +18,6 @@
 
 {:deps {}
  :aliases
-   {:build {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.8.2" :git/sha "0ffdb4c"}
+   {:build {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.8.3" :git/sha "7ac1f8d"}
                          com.github.pmonks/pbr            {:mvn/version "RELEASE"}}
             :ns-default pbr.build}}}
