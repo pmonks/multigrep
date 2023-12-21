@@ -18,7 +18,13 @@ A little Clojure library that provides regex-based file grepping and/or text sub
 #### Clojure CLI
 
 ```shell
-$ clj -Sdeps '{:deps {com.github.pmonks/multigrep {:mvn/version "#.#.#"}}}'  # Where #.#.# is replaced with an actual version number (see badge above)
+$ clj -Sdeps '{:deps {com.github.pmonks/multigrep {:mvn/version "RELEASE"}}}'
+```
+
+#### deps-try
+
+```shell
+$ deps-try com.github.pmonks/multigrep
 ```
 
 #### Leiningen
