@@ -30,7 +30,7 @@
          :validate-pom true
          :pom          {:description      "A little Clojure library that provides regex-based file grepping and/or text substitution."
                         :url              "https://github.com/pmonks/multigrep"
-                        :licenses         [:license   {:name "Apache License 2.0" :url "http://www.apache.org/licenses/LICENSE-2.0.html"}]
+                        :licenses         [:license   {:name "Apache-2.0" :url "http://www.apache.org/licenses/LICENSE-2.0.html"}]
                         :developers       [:developer {:id "pmonks" :name "Peter Monks" :email "pmonks+multigrep@gmail.com"}]
                         :scm              {:url "https://github.com/pmonks/multigrep" :connection "scm:git:git://github.com/pmonks/multigrep.git" :developer-connection "scm:git:ssh://git@github.com/pmonks/multigrep.git"}
                         :issue-management {:system "github" :url "https://github.com/pmonks/multigrep/issues"}}))
