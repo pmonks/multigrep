@@ -1,11 +1,12 @@
-| | | |
-|---:|:---:|:---:|
-| [**main**](https://github.com/pmonks/multigrep/tree/main) | [![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/multigrep/actions?query=workflow%3ACI+branch%3Amain) | [![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies+branch%3Amain) |
-| [**dev**](https://github.com/pmonks/multigrep/tree/dev) | [![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies+branch%3Adev) |
-
-[![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/multigrep)](https://clojars.org/com.github.pmonks/multigrep/) [![Open Issues](https://img.shields.io/github/issues/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/issues) [![License](https://img.shields.io/github/license/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/blob/main/LICENSE)
-
 # multigrep
+
+[![CI](https://github.com/pmonks/multigrep/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3ACI+branch%3Adev)
+[![Dependencies](https://github.com/pmonks/multigrep/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/multigrep/actions?query=workflow%3Adependencies+branch%3Adev)
+<br/>
+[![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/multigrep)](https://clojars.org/com.github.pmonks/multigrep/)
+[![Open Issues](https://img.shields.io/github/issues/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/issues)
+[![License](https://img.shields.io/github/license/pmonks/multigrep.svg)](https://github.com/pmonks/multigrep/blob/main/LICENSE)
+![Maintained](https://badges.ws/badge/?label=maintained&value=yes,+at+author's+discretion)
 
 A little Clojure library that provides regex-based file grepping and/or text substitution.
 
